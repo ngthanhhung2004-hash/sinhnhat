@@ -626,6 +626,37 @@
     100% { transform: scale(2) translateY(-50px); opacity: 0; }
   }
 
+  /* Scroll hint */
+  .scroll-hint {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 50;
+    animation: scrollBounce 1.5s ease-in-out infinite;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+  }
+  .scroll-hint.hidden { opacity: 0; }
+  .scroll-hint-text {
+    color: rgba(255,255,255,0.85);
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+    text-shadow: 0 0 10px rgba(196, 77, 255, 0.5);
+  }
+  .scroll-hint-arrow {
+    color: #c44dff;
+    font-size: 1.5rem;
+  }
+  @keyframes scrollBounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(10px); }
+  }
+
   /* Responsive */
   @media (max-width: 600px) {
     .title { font-size: 2.5rem; }
@@ -666,14 +697,14 @@
   <div class="intro-stage" id="introStage2">
     <div class="intro-name-big">Phạm Phương</div>
     <div class="intro-age-flash">22</div>
-    <div class="intro-subtext">tuổi rồi cơ đấy... chào mừng đến với "già" 😏</div>
+    <div class="intro-subtext">tuổi rồi cơ đấy... chào mừng đến với "già" 🎉</div>
   </div>
 
   <!-- Stage 3: CTA -->
   <div class="intro-stage" id="introStage3">
     <div class="intro-text">
       ✨ Hôm nay là ngày gì mà trời đẹp thế nhỉ... ✨<br>
-      <small style="font-size: 0.8em; color: #c44dff;">À đúng rồi, sinh nhật Phạm Phương mà! 😏✨</small>
+      <small style="font-size: 0.8em; color: #c44dff;">À đúng rồi, sinh nhật Phạm Phương mà! ✨</small>
     </div>
     <button class="intro-btn" onclick="startParty()">
       🎁 Mở quà thôi nào! 🎁
@@ -686,6 +717,10 @@
 <div class="stars" id="stars"></div>
 
 <!-- Main Content -->
+<div class="scroll-hint hidden" id="scrollHint">
+  <span class="scroll-hint-text">Kéo xuống để xem thêm nè!</span>
+  <span class="scroll-hint-arrow">▼</span>
+</div>
 <div class="container" id="mainContent" style="display:none;">
 
   <!-- Photo frame -->
@@ -1157,6 +1192,17 @@
       animateAge();
       observeCards();
 
+      // Show scroll hint — visible when at top, hidden when scrolled
+      const scrollHint = document.getElementById('scrollHint');
+      scrollHint.classList.remove('hidden');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 100) {
+          scrollHint.classList.add('hidden');
+        } else {
+          scrollHint.classList.remove('hidden');
+        }
+      });
+
       // Continuous emoji spawning
       setInterval(() => spawnEmoji(), 3000);
 
@@ -1203,12 +1249,12 @@
       <div class="intro-stage" id="introStage2">
         <div class="intro-name-big">Phạm Phương</div>
         <div class="intro-age-flash">22</div>
-        <div class="intro-subtext">tuổi rồi cơ đấy... chào mừng đến với "già" 😏</div>
+        <div class="intro-subtext">tuổi rồi cơ đấy... chào mừng đến với "già" 🎉</div>
       </div>
       <div class="intro-stage" id="introStage3">
         <div class="intro-text">
           ✨ Hôm nay là ngày gì mà trời đẹp thế nhỉ... ✨<br>
-          <small style="font-size: 0.8em; color: #c44dff;">À đúng rồi, sinh nhật Phạm Phương mà! 😏✨</small>
+          <small style="font-size: 0.8em; color: #c44dff;">À đúng rồi, sinh nhật Phạm Phương mà! ✨</small>
         </div>
         <button class="intro-btn" onclick="startParty()">
           🎁 Mở quà thôi nào! 🎁
