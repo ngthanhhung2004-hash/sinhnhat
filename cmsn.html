@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎂 Happy Birthday Phạm Phương! 🎂</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    font-family: 'Quicksand', sans-serif;
+    overflow-x: hidden;
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' style='font-size:28px'><text y='28'>🎈</text></svg>"), auto;
+  }
+
+  /* Starfield */
+  .stars {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: 0;
+  }
+  .star {
+    position: absolute;
+    width: 3px; height: 3px;
+    background: #fff;
+    border-radius: 50%;
+    animation: twinkle 2s infinite alternate;
+  }
+  @keyframes twinkle {
+    0% { opacity: 0.2; transform: scale(1); }
+    100% { opacity: 1; transform: scale(1.5); }
+  }
+
+  /* Floating emojis */
+  .float-emoji {
+    position: fixed;
+    font-size: 2rem;
+    animation: floatUp 6s linear forwards;
+    pointer-events: none;
+    z-index: 100;
+  }
+  @keyframes floatUp {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+  }
+
+  /* Confetti */
+  .confetti {
+    position: fixed;
+    width: 10px; height: 10px;
+    top: -10px;
+    z-index: 99;
+    animation: confettiFall linear forwards;
+  }
+  @keyframes confettiFall {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+  }
+
+  /* Main container */
+  .container {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    min-height: 100vh;
+  }
+
+  /* Intro overlay */
+  .intro-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    transition: opacity 1s ease, visibility 1s ease;
+    overflow: hidden;
+  }
+  .intro-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  /* Intro sequence stages */
+  .intro-stage { display: none; flex-direction: column; align-items: center; justify-content: center; position: absolute; width: 100%; height: 100%; }
+  .intro-stage.active { display: flex; }
+
+  /* Stage 1: Dramatic photo reveal */
+  .intro-photo-container {
+    position: relative;
+    width: 280px; height: 280px;
+  }
+  .intro-photo {
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid transparent;
+    background-clip: padding-box;
+    position: relative;
+    z-index: 2;
+    animation: introPhotoReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    filter: brightness(0);
+  }
+  .intro-photo-ring {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 2px solid;
+    animation: introRingPulse 2s ease-in-out infinite;
+  }
+  .intro-photo-ring:nth-child(2) { width: 300px; height: 300px; border-color: #ff6b9d; animation-delay: 0s; }
+  .intro-photo-ring:nth-child(3) { width: 330px; height: 330px; border-color: #c44dff; animation-delay: 0.3s; }
+  .intro-photo-ring:nth-child(4) { width: 360px; height: 360px; border-color: #6bcfff; animation-delay: 0.6s; }
+  @keyframes introRingPulse {
+    0%, 100% { opacity: 0.2; transform: translate(-50%,-50%) scale(0.95); }
+    50% { opacity: 0.8; transform: translate(-50%,-50%) scale(1.05); }
+  }
+  @keyframes introPhotoReveal {
+    0% { transform: scale(0.3) rotate(-10deg); filter: brightness(0); opacity: 0; }
+    50% { filter: brightness(1.5); }
+    100% { transform: scale(1) rotate(0deg); filter: brightness(1); opacity: 1; }
+  }
+
+  /* Glitch text */
+  .intro-glitch {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    font-size: 1.8rem;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 6px;
+    margin-top: 30px;
+    position: relative;
+    animation: glitchText 0.8s steps(2) infinite;
+  }
+  .intro-glitch::before, .intro-glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+  }
+  .intro-glitch::before {
+    color: #ff6b9d;
+    animation: glitchBefore 1s infinite;
+    clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+  }
+  .intro-glitch::after {
+    color: #6bcfff;
+    animation: glitchAfter 1.2s infinite;
+    clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+  }
+  @keyframes glitchBefore {
+    0%, 100% { transform: translate(0); }
+    20% { transform: translate(-3px, 2px); }
+    40% { transform: translate(3px, -2px); }
+    60% { transform: translate(-2px, -1px); }
+    80% { transform: translate(2px, 1px); }
+  }
+  @keyframes glitchAfter {
+    0%, 100% { transform: translate(0); }
+    20% { transform: translate(3px, -2px); }
+    40% { transform: translate(-3px, 2px); }
+    60% { transform: translate(2px, 1px); }
+    80% { transform: translate(-2px, -1px); }
+  }
+  @keyframes glitchText {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.95; }
+  }
+
+  /* Stage 2: Name explosion */
+  .intro-name-big {
+    font-family: 'Dancing Script', cursive;
+    font-size: 5rem;
+    background: linear-gradient(135deg, #ff6b9d, #ffd93d, #c44dff);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientMove 3s ease infinite, nameSlam 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    text-align: center;
+  }
+  @keyframes nameSlam {
+    0% { transform: scale(4) rotate(-5deg); opacity: 0; filter: blur(20px); }
+    60% { transform: scale(0.9) rotate(1deg); filter: blur(0); }
+    100% { transform: scale(1) rotate(0deg); opacity: 1; filter: blur(0); }
+  }
+  .intro-age-flash {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    font-size: 8rem;
+    color: #ffd93d;
+    text-shadow: 0 0 40px rgba(255,217,61,0.6), 0 0 80px rgba(255,107,157,0.4);
+    animation: ageFlash 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    margin-top: -10px;
+  }
+  @keyframes ageFlash {
+    0% { transform: scale(0); opacity: 0; }
+    70% { transform: scale(1.2); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  .intro-subtext {
+    color: rgba(255,255,255,0.6);
+    font-size: 1.1rem;
+    margin-top: 5px;
+    animation: fadeInUp 0.6s ease 0.3s forwards;
+    opacity: 0;
+  }
+
+  /* Stage 3: Final CTA */
+  .intro-text {
+    color: #fff;
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    text-align: center;
+    animation: pulse 2s infinite;
+  }
+  .intro-btn {
+    padding: 18px 50px;
+    font-size: 1.3rem;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(135deg, #ff6b9d, #c44dff, #6e8efb);
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 0 30px rgba(196, 77, 255, 0.5);
+    animation: btnGlow 2s infinite alternate;
+  }
+  .intro-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 50px rgba(196, 77, 255, 0.8);
+  }
+  @keyframes btnGlow {
+    0% { box-shadow: 0 0 20px rgba(255, 107, 157, 0.5); }
+    100% { box-shadow: 0 0 40px rgba(110, 142, 251, 0.8); }
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 0.7; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+  }
+
+  /* Flash overlay */
+  .flash-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: #fff;
+    z-index: 1001;
+    pointer-events: none;
+    opacity: 0;
+  }
+  .flash-overlay.flash {
+    animation: flashBang 0.4s ease-out forwards;
+  }
+  @keyframes flashBang {
+    0% { opacity: 0.9; }
+    100% { opacity: 0; }
+  }
+
+  /* Scanlines */
+  .scanlines {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(0,0,0,0.03) 0px,
+      rgba(0,0,0,0.03) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+    pointer-events: none;
+    z-index: 1002;
+    opacity: 0.5;
+  }
+
+  /* Cake */
+  .cake-wrapper {
+    margin: 30px 0;
+    animation: cakeBounce 2s ease-in-out infinite;
+    cursor: pointer;
+    position: relative;
+  }
+  .cake-wrapper:hover { transform: scale(1.05); }
+  @keyframes cakeBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  .cake-emoji {
+    font-size: 8rem;
+    filter: drop-shadow(0 0 20px rgba(255, 200, 50, 0.6));
+    transition: transform 0.3s;
+  }
+  .cake-emoji:active { transform: rotate(15deg) scale(1.2); }
+
+  /* Candle flames */
+  .flame {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px; height: 18px;
+    background: radial-gradient(ellipse, #ffeb3b, #ff9800, transparent);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    animation: flicker 0.3s infinite alternate;
+  }
+  @keyframes flicker {
+    0% { transform: translateX(-50%) scale(1) rotate(-3deg); }
+    100% { transform: translateX(-50%) scale(1.1) rotate(3deg); }
+  }
+
+  /* Title */
+  .title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 4rem;
+    background: linear-gradient(90deg, #ff6b9d, #ffd93d, #6bcfff, #c44dff, #ff6b9d);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientMove 4s ease infinite;
+    text-align: center;
+    margin-bottom: 10px;
+    text-shadow: none;
+  }
+  @keyframes gradientMove {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  .subtitle {
+    color: #ffd93d;
+    font-size: 1.4rem;
+    text-align: center;
+    margin-bottom: 30px;
+    opacity: 0;
+    animation: fadeInUp 1s ease 1.5s forwards;
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Message cards */
+  .cards {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 600px;
+    width: 100%;
+    margin-bottom: 40px;
+  }
+  .card {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 20px;
+    padding: 25px;
+    color: #fff;
+    opacity: 0;
+    transform: translateX(-60px);
+    transition: all 0.6s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .card.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .card:nth-child(even) {
+    transform: translateX(60px);
+  }
+  .card:nth-child(even).visible {
+    transform: translateX(0);
+  }
+  .card:hover {
+    background: rgba(255,255,255,0.15);
+    transform: scale(1.02) !important;
+    box-shadow: 0 8px 30px rgba(196, 77, 255, 0.3);
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .card:hover::before { opacity: 1; }
+  .card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    display: block;
+  }
+  .card-title {
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #ffd93d;
+    margin-bottom: 8px;
+  }
+  .card-text {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #e0d6ff;
+  }
+
+  /* Wish button */
+  .wish-section {
+    text-align: center;
+    margin: 30px 0;
+  }
+  .wish-btn {
+    padding: 16px 40px;
+    font-size: 1.2rem;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(135deg, #ff6b9d, #ff8e53);
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 5px 20px rgba(255, 107, 157, 0.4);
+    position: relative;
+    overflow: hidden;
+  }
+  .wish-btn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 8px 30px rgba(255, 107, 157, 0.6);
+  }
+  .wish-btn::after {
+    content: '✨';
+    position: absolute;
+    right: 15px;
+    animation: sparkle 1s infinite;
+  }
+  @keyframes sparkle {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.3); }
+  }
+
+  /* Fortune wheel */
+  .fortune-section {
+    text-align: center;
+    margin: 30px 0;
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+  .fortune-section.show { opacity: 1; }
+  .fortune-label {
+    color: #6bcfff;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+  }
+  .fortune-result {
+    background: linear-gradient(135deg, rgba(255,215,0,0.15), rgba(255,107,157,0.15));
+    border: 2px solid rgba(255,215,0,0.4);
+    border-radius: 20px;
+    padding: 25px;
+    color: #ffd93d;
+    font-size: 1.3rem;
+    font-weight: 700;
+    max-width: 500px;
+    margin: 0 auto;
+    animation: fortuneAppear 0.8s ease;
+  }
+  @keyframes fortuneAppear {
+    from { transform: scale(0) rotate(-180deg); opacity: 0; }
+    to { transform: scale(1) rotate(0deg); opacity: 1; }
+  }
+
+  /* Age counter */
+  .age-section {
+    text-align: center;
+    margin: 20px 0;
+  }
+  .age-question {
+    color: #c44dff;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+  }
+  .age-display {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3rem;
+    color: #ff6b9d;
+    min-height: 60px;
+  }
+  .age-note {
+    color: #888;
+    font-size: 0.85rem;
+    font-style: italic;
+    margin-top: 5px;
+  }
+
+  /* Photo frame area */
+  .photo-frame {
+    width: 250px; height: 250px;
+    border-radius: 50%;
+    border: 4px solid rgba(255,215,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle, rgba(196, 77, 255, 0.2), rgba(15, 52, 96, 0.5));
+    margin: 20px auto;
+    font-size: 6rem;
+    animation: photoGlow 3s ease-in-out infinite;
+    position: relative;
+    overflow: hidden;
+  }
+  @keyframes photoGlow {
+    0%, 100% { box-shadow: 0 0 20px rgba(255, 107, 157, 0.3); }
+    50% { box-shadow: 0 0 40px rgba(196, 77, 255, 0.6), 0 0 80px rgba(255, 107, 157, 0.3); }
+  }
+  .photo-ring {
+    position: absolute;
+    border: 2px solid rgba(255,215,0,0.3);
+    border-radius: 50%;
+    animation: ringExpand 3s ease-in-out infinite;
+  }
+  .photo-ring:nth-child(1) { width: 110%; height: 110%; animation-delay: 0s; }
+  .photo-ring:nth-child(2) { width: 120%; height: 120%; animation-delay: 1s; }
+  .photo-ring:nth-child(3) { width: 130%; height: 130%; animation-delay: 2s; }
+  @keyframes ringExpand {
+    0%, 100% { opacity: 0.3; transform: scale(0.95); }
+    50% { opacity: 0.7; transform: scale(1.05); }
+  }
+
+  /* Footer */
+  .footer {
+    color: #888;
+    font-size: 0.9rem;
+    text-align: center;
+    margin-top: 40px;
+    padding-bottom: 40px;
+  }
+  .footer .heart {
+    color: #ff6b9d;
+    display: inline-block;
+    animation: heartbeat 1s infinite;
+  }
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+  }
+
+  /* Fireworks */
+  .firework {
+    position: fixed;
+    pointer-events: none;
+    z-index: 50;
+  }
+  .firework-particle {
+    position: absolute;
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    animation: fireworkBurst 1.5s ease-out forwards;
+  }
+  @keyframes fireworkBurst {
+    0% { transform: translate(0, 0) scale(1); opacity: 1; }
+    100% { opacity: 0; }
+  }
+
+  /* Secret message */
+  .secret-msg {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    background: rgba(0,0,0,0.9);
+    border: 2px solid #ffd93d;
+    border-radius: 20px;
+    padding: 40px;
+    color: #fff;
+    text-align: center;
+    z-index: 200;
+    transition: transform 0.5s ease;
+    max-width: 90%;
+  }
+  .secret-msg.show {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  .secret-msg h2 {
+    font-family: 'Dancing Script', cursive;
+    color: #ff6b9d;
+    font-size: 2rem;
+    margin-bottom: 15px;
+  }
+  .secret-msg p {
+    color: #e0d6ff;
+    line-height: 1.8;
+    font-size: 1.1rem;
+  }
+  .secret-close {
+    margin-top: 20px;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 25px;
+    background: #c44dff;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    font-family: 'Quicksand', sans-serif;
+  }
+
+  /* Click explosion */
+  .click-burst {
+    position: fixed;
+    pointer-events: none;
+    font-size: 1.5rem;
+    z-index: 100;
+    animation: burstOut 1s ease-out forwards;
+  }
+  @keyframes burstOut {
+    0% { transform: scale(0); opacity: 1; }
+    100% { transform: scale(2) translateY(-50px); opacity: 0; }
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .title { font-size: 2.5rem; }
+    .cake-emoji { font-size: 5rem; }
+    .photo-frame { width: 180px; height: 180px; font-size: 4rem; }
+    .card { padding: 18px; }
+    .intro-text { font-size: 1.4rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Flash overlay -->
+<div class="flash-overlay" id="flashOverlay"></div>
+<div class="scanlines" id="scanlines"></div>
+
+<!-- Intro Screen -->
+<div class="intro-overlay" id="intro">
+
+  <!-- Stage 1: Photo reveal + glitch text -->
+  <div class="intro-stage active" id="introStage1">
+    <div class="intro-photo-container">
+      <img class="intro-photo" id="introPhoto" src="phuong.jpg" alt="Phạm Phương"
+           onerror="this.style.display='none'; document.getElementById('introPhotoFallback').style.display='flex';">
+      <div id="introPhotoFallback" style="display:none; width:280px; height:280px; border-radius:50%;
+           background: linear-gradient(135deg, #ff6b9d, #c44dff); align-items:center; justify-content:center;
+           font-size:5rem; position:absolute; top:0; left:0; animation: introPhotoReveal 1.2s cubic-bezier(0.16,1,0.3,1) forwards;">
+        👸
+      </div>
+      <div class="intro-photo-ring"></div>
+      <div class="intro-photo-ring"></div>
+      <div class="intro-photo-ring"></div>
+    </div>
+    <div class="intro-glitch" data-text="ĐỪNG CÓ LƯỚT">ĐỪNG CÓ LƯỚT</div>
+  </div>
+
+  <!-- Stage 2: Name slam + age -->
+  <div class="intro-stage" id="introStage2">
+    <div class="intro-name-big">Phạm Phương</div>
+    <div class="intro-age-flash">22</div>
+    <div class="intro-subtext">tuổi rồi cơ đấy... chào mừng đến với "già" 😏</div>
+  </div>
+
+  <!-- Stage 3: CTA -->
+  <div class="intro-stage" id="introStage3">
+    <div class="intro-text">
+      ✨ Hôm nay là ngày gì mà trời đẹp thế nhỉ... ✨<br>
+      <small style="font-size: 0.8em; color: #c44dff;">À đúng rồi, sinh nhật Phạm Phương mà! 😏✨</small>
+    </div>
+    <button class="intro-btn" onclick="startParty()">
+      🎁 Mở quà thôi nào! 🎁
+    </button>
+  </div>
+
+</div>
+
+<!-- Stars background -->
+<div class="stars" id="stars"></div>
+
+<!-- Main Content -->
+<div class="container" id="mainContent" style="display:none;">
+
+  <!-- Photo frame -->
+  <div class="photo-frame" onclick="triggerSecret()">
+    <div class="photo-ring"></div>
+    <div class="photo-ring"></div>
+    <div class="photo-ring"></div>
+    <img src="phuong.jpg" alt="Phương" style="width:100%;height:100%;object-fit:cover;border-radius:50%;position:absolute;top:0;left:0;z-index:1;"
+         onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend','<span style=\'font-size:6rem;z-index:1;position:relative;\'>👸</span>');">
+  </div>
+
+  <!-- Title -->
+  <h1 class="title">Happy Birthday Phương!</h1>
+  <p class="subtitle">🎵 Chúc mừng ngày nàng Phạm Phương chính thức bước sang tuổi 22! 🎵</p>
+
+  <!-- Cake -->
+  <div class="cake-wrapper" onclick="blowCandle()" title="Bấm để thổi nến!">
+    <div class="flame" id="flame"></div>
+    <div class="cake-emoji" id="cakeEmoji">🎂</div>
+  </div>
+  <p style="color:#aaa; font-size:1.2rem; text-align:center; margin-top:8px; font-weight:600;">
+    👆 Bấm vào nến để thổi bánh nè!
+  </p>
+
+  <!-- Age joke -->
+  <div class="age-section">
+    <p class="age-question">📌 Tuổi chính thức năm nay:</p>
+    <div class="age-display" id="ageDisplay"></div>
+    <p class="age-note" id="ageNote"></p>
+  </div>
+
+  <!-- Message Cards -->
+  <div class="cards" id="cards">
+
+    <div class="card" onclick="cardClick(this)">
+      <span class="card-icon">🧁</span>
+      <div class="card-title">Lời chúc số 1: Về nhan sắc</div>
+      <div class="card-text">
+        Phương ơi, 22 tuổi rồi mà xinh thế này thì ai chịu nổi! 😂
+        Năm nay chúc Phương xinh hơn năm 21... à mà 21 đã xinh quá rồi,
+        nên cứ giữ nguyên cũng được!<br>
+        <em>P/S: Phương không cần filter, filter cần Phương! 📸</em>
+      </div>
+    </div>
+
+    <div class="card" onclick="cardClick(this)">
+      <span class="card-icon">💰</span>
+      <div class="card-title">Lời chúc số 2: Về tài chính</div>
+      <div class="card-text">
+        Chúc Phương tuổi 22 ví luôn dày, tài khoản luôn đầy, Shopee luôn free ship,
+        và cuối tháng không phải ăn mì tôm! 🍜💸<br>
+        <em>Phương giàu lên rồi nhớ bao tui ăn với nha! Đừng quên người năm cũ! 😤</em>
+      </div>
+    </div>
+
+    <div class="card" onclick="cardClick(this)">
+      <span class="card-icon">💪</span>
+      <div class="card-title">Lời chúc số 3: Về sức khỏe</div>
+      <div class="card-text">
+        Chúc Phương 22 tuổi khỏe mạnh, ăn gì cũng không béo, thức khuya không thâm mắt,
+        và da lúc nào cũng căng bóng như em bé! 👶✨<br>
+        <em>(Đùa thôi, Phương nhớ ngủ sớm đi nha, đừng lướt TikTok đến 2h sáng nữa! 📱😴)</em>
+      </div>
+    </div>
+
+    <div class="card" onclick="cardClick(this)">
+      <span class="card-icon">❤️</span>
+      <div class="card-title">Lời chúc số 4: Về tình yêu</div>
+      <div class="card-text">
+        Chúc Phương tuổi 22 tìm được người yêu chiều Phương hết mực...
+        hoặc ít nhất là tìm được quán ăn ngon chiều nào cũng mở cửa! 🥘😌<br>
+        <em>Mà thôi, với nhan sắc của Phương thì người ta xếp hàng chờ rồi, chọn thôi! 👑</em>
+      </div>
+    </div>
+
+    <div class="card" onclick="cardClick(this)">
+      <span class="card-icon">⭐</span>
+      <div class="card-title">Lời chúc số 5: Về sự nghiệp</div>
+      <div class="card-text">
+        22 tuổi — cái tuổi vừa đủ chín để tỏa sáng! 🌟
+        Chúc Phương thăng chức tăng lương, sếp dễ thương, đồng nghiệp không drama,
+        và quan trọng nhất: KHÔNG BAO GIỜ PHẢI LÀM THÊM GIỜ! 🏢🎉<br>
+        <em>Phương mà làm gì cũng giỏi, chỉ giỏi dậy sớm là chưa thấy thôi! 😂</em>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Fortune -->
+  <div class="wish-section">
+    <button class="wish-btn" onclick="spinFortune()">
+      🔮 Bói vận may năm nay 🔮
+    </button>
+  </div>
+  <div class="fortune-section" id="fortuneSection">
+    <div class="fortune-result" id="fortuneResult"></div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    Made with <span class="heart">❤️</span> dành riêng cho Phạm Phương<br>
+    <small style="color:#555;">Phương ơi bấm lung tung đi, có nhiều bất ngờ lắm! 🤫</small><br><br>
+    <button onclick="replayIntro()" style="padding:10px 28px; border:1px solid rgba(255,255,255,0.2); border-radius:25px;
+      background:rgba(255,255,255,0.05); color:#c44dff; font-size:0.9rem; font-family:'Quicksand',sans-serif;
+      font-weight:600; cursor:pointer; transition:all 0.3s; backdrop-filter:blur(5px);"
+      onmouseover="this.style.background='rgba(196,77,255,0.15)'; this.style.borderColor='#c44dff';"
+      onmouseout="this.style.background='rgba(255,255,255,0.05)'; this.style.borderColor='rgba(255,255,255,0.2)';">
+      🔄 Xem lại từ đầu
+    </button>
+    <div style="position:fixed; bottom:8px; right:12px; color:rgba(255,255,255,0.18); font-size:0.7rem; font-style:italic; z-index:5; max-width:320px; text-align:right; line-height:1.4;">
+      Vibecode bằng AI thôi chứ tau không tự làm được nnay đâu =)))) deck quan tâm dù sao thì của ít lòng vòng
+    </div>
+  </div>
+</div>
+
+<!-- Secret Message -->
+<div class="secret-msg" id="secretMsg">
+  <h2>🌸 Psst... Phương ơi! 🌸</h2>
+  <p>
+    Phương biết không, trên thế giới có gần 8 tỷ người...<br>
+    nhưng chỉ có đúng MỘT Phạm Phương thôi! 🌍<br><br>
+    Phương là phiên bản limited edition, không restock,<br>
+    không có hàng nhái, không có sale off! 😎<br><br>
+    22 tuổi — đủ lớn để chinh phục thế giới,<br>
+    đủ trẻ để mắc sai lầm và cười xòa! 🌈<br><br>
+    <strong style="color:#ffd93d;">Sinh nhật vui vẻ nha Phương yêu! 🎂💖<br>
+    Cảm ơn vì luôn là chính mình — rực rỡ và đặc biệt!</strong>
+  </p>
+  <button class="secret-close" onclick="closeSecret()">Hehe, Phương cảm ơn! 🥰</button>
+</div>
+
+<script>
+  // ========== AUDIO CONTEXT (Web Audio API) ==========
+  let audioCtx;
+  function getAudioCtx() {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    return audioCtx;
+  }
+
+  // Play a simple tone
+  function playTone(freq, duration, type = 'sine', vol = 0.15) {
+    try {
+      const ctx = getAudioCtx();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = type;
+      osc.frequency.value = freq;
+      gain.gain.setValueAtTime(vol, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + duration);
+    } catch(e) {}
+  }
+
+  // Happy Birthday melody
+  function playHappyBirthday() {
+    const notes = [
+      [262, 0.3], [262, 0.3], [294, 0.6], [262, 0.6], [349, 0.6], [330, 1.0],
+      [262, 0.3], [262, 0.3], [294, 0.6], [262, 0.6], [392, 0.6], [349, 1.0],
+      [262, 0.3], [262, 0.3], [523, 0.6], [440, 0.6], [349, 0.6], [330, 0.6], [294, 1.0],
+      [466, 0.3], [466, 0.3], [440, 0.6], [349, 0.6], [392, 0.6], [349, 1.0],
+    ];
+    let time = 0;
+    notes.forEach(([freq, dur]) => {
+      setTimeout(() => playTone(freq, dur, 'triangle', 0.2), time * 1000);
+      time += dur + 0.05;
+    });
+  }
+
+  // Pop sound
+  function playPop() {
+    playTone(800, 0.1, 'sine', 0.2);
+    setTimeout(() => playTone(1200, 0.08, 'sine', 0.15), 50);
+  }
+
+  // Sparkle sound
+  function playSparkle() {
+    [1200, 1500, 1800, 2200].forEach((f, i) => {
+      setTimeout(() => playTone(f, 0.15, 'sine', 0.1), i * 80);
+    });
+  }
+
+  // Blow sound
+  function playBlow() {
+    try {
+      const ctx = getAudioCtx();
+      const bufferSize = ctx.sampleRate * 0.5;
+      const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < bufferSize; i++) {
+        data[i] = (Math.random() * 2 - 1) * (1 - i / bufferSize) * 0.3;
+      }
+      const source = ctx.createBufferSource();
+      source.buffer = buffer;
+      const filter = ctx.createBiquadFilter();
+      filter.type = 'lowpass';
+      filter.frequency.value = 600;
+      source.connect(filter);
+      filter.connect(ctx.destination);
+      source.start();
+    } catch(e) {}
+  }
+
+  // Cheer sound
+  function playCheer() {
+    [523, 659, 784, 1047].forEach((f, i) => {
+      setTimeout(() => playTone(f, 0.4, 'square', 0.08), i * 150);
+    });
+  }
+
+  // ========== STARS ==========
+  function createStars() {
+    const container = document.getElementById('stars');
+    for (let i = 0; i < 80; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.style.left = Math.random() * 100 + '%';
+      star.style.top = Math.random() * 100 + '%';
+      star.style.animationDelay = Math.random() * 3 + 's';
+      star.style.width = star.style.height = (Math.random() * 3 + 1) + 'px';
+      container.appendChild(star);
+    }
+  }
+
+  // ========== CONFETTI ==========
+  function launchConfetti(count = 60) {
+    const colors = ['#ff6b9d', '#ffd93d', '#6bcfff', '#c44dff', '#ff8e53', '#4dff88', '#ff4d6a'];
+    for (let i = 0; i < count; i++) {
+      setTimeout(() => {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * 100 + '%';
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+        confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+        confetti.style.width = (Math.random() * 8 + 5) + 'px';
+        confetti.style.height = (Math.random() * 8 + 5) + 'px';
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 5000);
+      }, i * 30);
+    }
+  }
+
+  // ========== FLOATING EMOJIS ==========
+  function spawnEmoji(x) {
+    const emojis = ['🎈', '🎉', '🎊', '🌸', '💖', '⭐', '✨', '🦋', '🌺', '💎', '🎀', '🍰'];
+    const el = document.createElement('div');
+    el.className = 'float-emoji';
+    el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    el.style.left = (x || Math.random() * 100) + (x ? 'px' : '%');
+    el.style.bottom = '0';
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 6000);
+  }
+
+  // ========== FIREWORKS ==========
+  function createFirework(x, y) {
+    const colors = ['#ff6b9d', '#ffd93d', '#6bcfff', '#c44dff', '#ff8e53'];
+    const fw = document.createElement('div');
+    fw.className = 'firework';
+    fw.style.left = x + 'px';
+    fw.style.top = y + 'px';
+    for (let i = 0; i < 20; i++) {
+      const p = document.createElement('div');
+      p.className = 'firework-particle';
+      p.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      const angle = (Math.PI * 2 / 20) * i;
+      const dist = 60 + Math.random() * 60;
+      const tx = Math.cos(angle) * dist;
+      const ty = Math.sin(angle) * dist;
+      p.style.animation = `fireworkBurst 1.5s ease-out forwards`;
+      p.animate([
+        { transform: 'translate(0, 0) scale(1)', opacity: 1 },
+        { transform: `translate(${tx}px, ${ty}px) scale(0)`, opacity: 0 }
+      ], { duration: 1500, easing: 'ease-out', fill: 'forwards' });
+      fw.appendChild(p);
+    }
+    document.body.appendChild(fw);
+    setTimeout(() => fw.remove(), 1600);
+  }
+
+  // ========== CLICK BURST ==========
+  document.addEventListener('click', (e) => {
+    const emojis = ['💖', '✨', '🌸', '⭐', '🎀'];
+    const el = document.createElement('div');
+    el.className = 'click-burst';
+    el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    el.style.left = e.clientX + 'px';
+    el.style.top = e.clientY + 'px';
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 1000);
+  });
+
+  // ========== AGE ANIMATION ==========
+  function animateAge() {
+    const display = document.getElementById('ageDisplay');
+    const note = document.getElementById('ageNote');
+    let count = 0;
+    const target = 22;
+    const interval = setInterval(() => {
+      count++;
+      display.textContent = count;
+      if (count >= target) {
+        clearInterval(interval);
+        display.textContent = '✨ 22 tuổi ✨';
+        note.textContent = '(22 — đẹp nhất là bây giờ, Phương ơi! Cứ tự tin mà tỏa sáng! 💅)';
+        playSparkle();
+      }
+    }, 50);
+  }
+
+  // ========== FORTUNE ==========
+  const fortunes = [
+    "🌟 Phương ơi, năm 22 tuổi sẽ gặp cực kỳ nhiều MAY MẮN! Ví dụ: tìm thấy 50k trong túi áo cũ!",
+    "💕 Có ai đó đang thầm thích Phương đấy... nhưng Phương đang đeo tai nghe nên không nghe thấy! Gỡ ra đi!",
+    "💰 Tài chính của Phương năm nay sắp bùng nổ! Bùng nổ kiểu... Shopee sale 50% toàn đồ Phương thích!",
+    "✈️ Phương sẽ có chuyến du lịch bất ngờ trong năm nay! Biển xanh cát trắng đang gọi tên Phương! 🏖️",
+    "🌸 Tuổi 22 vận may nở rộ như hoa mùa xuân! Cứ tự tin mà sống, đời không phụ người xinh như Phương!",
+    "🎯 Mọi mục tiêu của Phương đều sẽ đạt được! Trừ mục tiêu dậy sớm... cái đó từ từ tính! 😴",
+    "👑 Phạm Phương chính là QUEEN! Năm 22 cả thế giới phải serve Phương!",
+    "🍀 Tháng sinh nhật cực kỳ may mắn! Random mấy cũng trúng, kể cả trúng... crush nhìn Phương!",
+    "🦋 22 tuổi là tuổi đẹp nhất đời người! Phương sẽ gặp được những điều tuyệt vời nhất!",
+    "🎪 Năm nay Phương sẽ làm được điều mà ai cũng phải WOW! (Kể cả bản thân Phương cũng WOW luôn! 🤯)",
+    "💎 Phương là kim cương, năm 22 là lúc tỏa sáng rực rỡ nhất! Cả thế giới phải đeo kính râm! 😎",
+    "🧁 Năm nay ăn gì cũng ngon, mặc gì cũng đẹp, làm gì cũng xuôi! Phương sinh ra là để hưởng phước!",
+    "🎵 Đường đời Phương năm nay smooth như nhạc lofi — chill mà vẫn đỉnh! 🎧",
+    "🔥 22 tuổi là bước ngoặt! Phương sắp level up cực mạnh — cả ngoại hình lẫn nội tâm! XP +9999!",
+    "🌙 Trăng sao đã xếp hàng chúc phúc cho Phương! Năm nay muốn gì được nấy, chỉ cần Phương dám ước! ✨",
+    "🐱 Có một chú mèo may mắn đang mang hạnh phúc đến cho Phương! (Hoặc ít nhất là video mèo cute trên TikTok 😻)",
+  ];
+  // Shuffle array to ensure no repeats
+  let fortunePool = [];
+  let fortuneIndex = 0;
+  function shuffleArray(arr) {
+    const a = [...arr];
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+  fortunePool = shuffleArray(fortunes);
+
+  function getNextFortune() {
+    if (fortuneIndex >= fortunePool.length) {
+      // All shown, reshuffle
+      fortunePool = shuffleArray(fortunes);
+      fortuneIndex = 0;
+    }
+    return fortunePool[fortuneIndex++];
+  }
+
+  let isSpinning = false;
+  function spinFortune() {
+    if (isSpinning) return;
+    isSpinning = true;
+    playPop();
+    const section = document.getElementById('fortuneSection');
+    const result = document.getElementById('fortuneResult');
+    const btn = document.querySelector('.wish-btn');
+    section.classList.add('show');
+    btn.style.pointerEvents = 'none';
+    btn.style.opacity = '0.6';
+    // Pick the final result BEFORE animation
+    const finalFortune = getNextFortune();
+    // Shuffle animation with random display
+    let count = 0;
+    const interval = setInterval(() => {
+      result.textContent = fortunes[Math.floor(Math.random() * fortunes.length)];
+      result.style.transform = `scale(${0.9 + Math.random() * 0.2})`;
+      count++;
+      if (count > 15) {
+        clearInterval(interval);
+        result.textContent = finalFortune;
+        result.style.transform = 'scale(1)';
+        playCheer();
+        launchConfetti(30);
+        isSpinning = false;
+        btn.style.pointerEvents = 'auto';
+        btn.style.opacity = '1';
+        // Update button text with count
+        const remaining = fortunePool.length - fortuneIndex;
+        btn.innerHTML = remaining > 0
+          ? `🔮 Bói tiếp nè! (còn ${remaining} quẻ) 🔮`
+          : `🔮 Bói lại từ đầu nè! 🔮`;
+      }
+    }, 100);
+  }
+
+  // ========== BLOW CANDLE ==========
+  let candleLit = true;
+  function blowCandle() {
+    if (!candleLit) {
+      // Re-light
+      document.getElementById('flame').style.display = 'block';
+      document.getElementById('cakeEmoji').textContent = '🎂';
+      candleLit = true;
+      playTone(440, 0.2, 'sine', 0.1);
+      return;
+    }
+    playBlow();
+    document.getElementById('flame').style.display = 'none';
+    document.getElementById('cakeEmoji').textContent = '🍰';
+    candleLit = false;
+    // Celebration
+    setTimeout(() => {
+      launchConfetti(80);
+      playCheer();
+      for (let i = 0; i < 5; i++) {
+        setTimeout(() => {
+          createFirework(
+            Math.random() * window.innerWidth,
+            Math.random() * window.innerHeight * 0.5
+          );
+        }, i * 300);
+      }
+    }, 500);
+  }
+
+  // ========== SECRET MESSAGE ==========
+  let secretClickCount = 0;
+  function triggerSecret() {
+    secretClickCount++;
+    playPop();
+    spawnEmoji();
+    if (secretClickCount >= 3) {
+      document.getElementById('secretMsg').classList.add('show');
+      playSparkle();
+      secretClickCount = 0;
+    }
+  }
+  function closeSecret() {
+    document.getElementById('secretMsg').classList.remove('show');
+    playPop();
+  }
+
+  // ========== CARD CLICK ==========
+  function cardClick(card) {
+    playPop();
+    spawnEmoji();
+  }
+
+  // ========== CARD SCROLL ANIMATION ==========
+  function observeCards() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.2 });
+    document.querySelectorAll('.card').forEach(card => observer.observe(card));
+  }
+
+  // ========== START PARTY ==========
+  function startParty() {
+    playPop();
+    const intro = document.getElementById('intro');
+    const main = document.getElementById('mainContent');
+    intro.classList.add('hidden');
+    main.style.display = 'flex';
+
+    setTimeout(() => {
+      intro.remove();
+      playHappyBirthday();
+      launchConfetti(100);
+      animateAge();
+      observeCards();
+
+      // Continuous emoji spawning
+      setInterval(() => spawnEmoji(), 3000);
+
+      // Periodic fireworks
+      setTimeout(() => {
+        for (let i = 0; i < 3; i++) {
+          setTimeout(() => {
+            createFirework(
+              Math.random() * window.innerWidth,
+              Math.random() * window.innerHeight * 0.4
+            );
+          }, i * 500);
+        }
+      }, 2000);
+    }, 500);
+  }
+
+  // ========== REPLAY ==========
+  function replayIntro() {
+    // Re-create intro overlay
+    const main = document.getElementById('mainContent');
+    main.style.display = 'none';
+
+    const oldIntro = document.getElementById('intro');
+    if (oldIntro) oldIntro.remove();
+
+    const introHTML = `
+    <div class="intro-overlay" id="intro">
+      <div class="intro-stage active" id="introStage1">
+        <div class="intro-photo-container">
+          <img class="intro-photo" id="introPhoto" src="phuong.jpg" alt="Phạm Phương"
+               onerror="this.style.display='none'; document.getElementById('introPhotoFallback').style.display='flex';">
+          <div id="introPhotoFallback" style="display:none; width:280px; height:280px; border-radius:50%;
+               background: linear-gradient(135deg, #ff6b9d, #c44dff); align-items:center; justify-content:center;
+               font-size:5rem; position:absolute; top:0; left:0; animation: introPhotoReveal 1.2s cubic-bezier(0.16,1,0.3,1) forwards;">
+            👸
+          </div>
+          <div class="intro-photo-ring"></div>
+          <div class="intro-photo-ring"></div>
+          <div class="intro-photo-ring"></div>
+        </div>
+        <div class="intro-glitch" data-text="ĐỪNG CÓ LƯỚT">ĐỪNG CÓ LƯỚT</div>
+      </div>
+      <div class="intro-stage" id="introStage2">
+        <div class="intro-name-big">Phạm Phương</div>
+        <div class="intro-age-flash">22</div>
+        <div class="intro-subtext">tuổi rồi cơ đấy... chào mừng đến với "già" 😏</div>
+      </div>
+      <div class="intro-stage" id="introStage3">
+        <div class="intro-text">
+          ✨ Hôm nay là ngày gì mà trời đẹp thế nhỉ... ✨<br>
+          <small style="font-size: 0.8em; color: #c44dff;">À đúng rồi, sinh nhật Phạm Phương mà! 😏✨</small>
+        </div>
+        <button class="intro-btn" onclick="startParty()">
+          🎁 Mở quà thôi nào! 🎁
+        </button>
+      </div>
+    </div>`;
+
+    document.body.insertAdjacentHTML('afterbegin', introHTML);
+    document.getElementById('scanlines').style.opacity = '0.5';
+    runIntroSequence();
+  }
+
+  // ========== INTRO SEQUENCE ==========
+  function runIntroSequence() {
+    const flash = document.getElementById('flashOverlay');
+    const s1 = document.getElementById('introStage1');
+    const s2 = document.getElementById('introStage2');
+    const s3 = document.getElementById('introStage3');
+
+    // Stage 1: Photo + glitch (auto start)
+    playTone(150, 0.5, 'sawtooth', 0.1);
+    setTimeout(() => playTone(200, 0.3, 'square', 0.08), 200);
+    setTimeout(() => playTone(100, 0.4, 'sawtooth', 0.08), 500);
+
+    // Transition to Stage 2 after 2.5s
+    setTimeout(() => {
+      flash.classList.add('flash');
+      playTone(600, 0.15, 'square', 0.2);
+      setTimeout(() => flash.classList.remove('flash'), 400);
+
+      s1.classList.remove('active');
+      s2.classList.add('active');
+
+      // Bass drop sound
+      playTone(80, 0.8, 'sawtooth', 0.25);
+      setTimeout(() => playTone(120, 0.4, 'triangle', 0.15), 100);
+    }, 2500);
+
+    // Transition to Stage 3 after 5.5s
+    setTimeout(() => {
+      flash.classList.add('flash');
+      playTone(400, 0.1, 'sine', 0.15);
+      setTimeout(() => flash.classList.remove('flash'), 400);
+
+      s2.classList.remove('active');
+      s3.classList.add('active');
+
+      document.getElementById('scanlines').style.opacity = '0';
+      playSparkle();
+    }, 5500);
+  }
+
+  // ========== INIT ==========
+  createStars();
+  runIntroSequence();
+</script>
+</body>
+</html>
